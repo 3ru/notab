@@ -94,11 +94,8 @@ export const Header: VFC = memo(() => {
 									</div>
 									<div className="hidden sm:ml-6 sm:flex sm:space-x-8">
 										<NavContent name="Hot" />
-
 										<NavContent name="Teams" />
-
 										<NavContent name="Project" />
-
 										<NavContent name="Calendar" />
 									</div>
 								</div>
