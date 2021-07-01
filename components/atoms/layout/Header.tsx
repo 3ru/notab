@@ -4,40 +4,13 @@ import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import Image from "next/image";
 import icon from "../../img/foxicon.png";
-import { useRouter } from "next/router";
+import { NavContent } from "../nav/NavContent";
 
 function classNames(...classes: string[]) {
 	return classes.filter(Boolean).join(" ");
 }
 
-type NavProps = {
-	name: string;
-	mobile?: boolean;
-};
-
 export const Header: VFC = memo(() => {
-	const NavContent: VFC<NavProps> = (navprops) => {
-		const { name, mobile } = navprops;
-		const href = name.toLowerCase();
-		const router = useRouter();
-		return (
-			<Link href={href}>
-				<a
-					className={
-						router.pathname === href
-							? mobile
-								? "bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-								: "border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-							: mobile
-							? "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-							: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-					}
-				>
-					{name}
-				</a>
-			</Link>
-		);
-	};
 	return (
 		<header>
 			<h2 className="sr-only">Header</h2>
@@ -51,7 +24,7 @@ export const Header: VFC = memo(() => {
 										<Link href="/">
 											<svg
 												id="main_icon"
-												enable-background="new 0 0 512 512"
+												enableBackground="new 0 0 512 512"
 												height="512"
 												viewBox="0 0 512 512"
 												width="512"
@@ -220,10 +193,10 @@ export const Header: VFC = memo(() => {
 
 						<Disclosure.Panel className="sm:hidden">
 							<div className="pt-2 pb-3 space-y-1">
-								<NavContent name="Dashbord" mobile />
-								<NavContent name="Team" mobile />
-								<NavContent name="Projects" mobile />
-								<NavContent name="Calendar" mobile />
+								<NavContent name="Dashbord" hamburger />
+								<NavContent name="Team" hamburger />
+								<NavContent name="Projects" hamburger />
+								<NavContent name="Calendar" hamburger />
 							</div>
 							{/* 
 							<div className="pt-4 pb-3 border-t border-gray-200">
