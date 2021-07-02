@@ -10,7 +10,7 @@ const navigation = [
 
 export const Footer = () => {
 	return (
-		<footer className="bg-white">
+		<footer className="">
 			<h2 className="sr-only">Footer</h2>
 			<div className="max-w-7xl mx-auto py-2 px-4 overflow-hidden sm:px-6 lg:px-8">
 				<nav

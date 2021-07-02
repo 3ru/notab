@@ -9,7 +9,7 @@ type NavProps = {
 
 export const NavContent: VFC<NavProps> = memo((navprops) => {
 	const { name, hamburger } = navprops;
-	const href = name.toLowerCase();
+	const href = "/" + name.toLowerCase();
 	const router = useRouter();
 	return (
 		<Link href={href}>
@@ -20,8 +20,8 @@ export const NavContent: VFC<NavProps> = memo((navprops) => {
 							? "hamburger-current"
 							: "header-current"
 						: hamburger
-                            ? "hamburger"
-                            : "header"
+						? "hamburger"
+						: "header"
 				}
 			>
 				{name}

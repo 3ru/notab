@@ -20,23 +20,23 @@ export default function Home() {
 								</span>
 							</h1>
 							<p className="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
-								これまでの複数タブはもうひつようありません。
+								これまでの複数タブはもうひつようありません
 								<br />
-								これからはこれ一つで完結。
+								これからはこれ一つで完結
 								<br />
 								新しい生活をはじめましょう
 							</p>
 							<div className="mt-10 sm:flex sm:justify-center lg:justify-start">
 								<div className="rounded-md shadow">
 									<Link href="/">
-										<a className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+										<a className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10 duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
 											公開中を見る
 										</a>
 									</Link>
 								</div>
 								<div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
 									<Link href="/dashbord">
-										<a className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
+										<a className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
 											Go Dashbord
 										</a>
 									</Link>
@@ -44,9 +44,9 @@ export default function Home() {
 							</div>
 						</div>
 					</div>
-					<div className="relative w-full h-64 sm:h-72 md:h-96 lg:absolute inset-y-0 xl:-inset-y-28 lg:right-0 lg:w-1/2 lg:h-full ">
+					<div className="relative w-full h-64 sm:h-72 md:h-96 lg:absolute inset-y-0 xl:-inset-y-28 lg:right-0 lg:w-1/2 lg:h-full">
 						<Image
-							className="absolute inset-0 w-full h-full object-cover"
+							className="absolute inset-0 w-full h-full object-cover hover:scale-150 duration-1000 delay-500"
 							src={lpImg}
 							alt="iphone landscape photography"
 							placeholder="blur"

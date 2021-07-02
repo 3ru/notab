@@ -20,3 +20,14 @@
 .img-protect__image {
 	pointer-events: none;
 }
+
+.neumo {
+	border-radius: 20px;
+	background: #e5e7eb;
+	box-shadow: 5px 5px 10px #c3c4c8, -5px -5px 10px #ffffff;
+}
+
+.neumoin {
+	background: #e5e7eb;
+	box-shadow: inset 5px 5px 10px #c3c4c8, inset -5px -5px 10px #ffffff;
+}

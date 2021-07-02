@@ -1,4 +1,4 @@
-import { memo, VFC, Fragment } from "react";
+import React, { memo, VFC, Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
@@ -19,7 +19,7 @@ export const Header: VFC = memo(() => {
 	return (
 		<header>
 			<h2 className="sr-only">Header</h2>
-			<Disclosure as="nav" className="bg-white shadow">
+			<Disclosure as="nav" className="shadow">
 				{({ open }) => (
 					<>
 						<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

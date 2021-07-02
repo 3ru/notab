@@ -1,4 +1,4 @@
-export const MainLogo = (props: any) => (
+export const EarthLogo = (props: any) => (
 	<svg
 		id="main_icon"
 		enableBackground="new 0 0 512 512"

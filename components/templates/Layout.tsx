@@ -11,7 +11,10 @@ type Props = {
 export const Layout: VFC<Props> = (props) => {
 	const { children, title } = props;
 	return (
-		<div lang="ja-JP" className="font-mono min-h-screen flex flex-col">
+		<div
+			lang="ja-JP"
+			className="font-mono min-h-screen flex flex-col bg-gray-200"
+		>
 			<Head>
 				<title>{title} | mulvid</title>
 			</Head>
