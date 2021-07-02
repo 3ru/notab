@@ -4,7 +4,7 @@ import { DashbordRow } from "../components/atoms/dashbord/DashbordRow";
 export default function Dashbord() {
 	return (
 		<Layout title="dashbord">
-			<div className="container flex mx-auto w-full items-center justify-center ">
+			<div className="container flex mx-auto w-full items-center justify-center">
 				<ul className="flex flex-col m-4 w-screen">
 					<DashbordRow
 						emoji="💧"

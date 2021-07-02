@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { NavContent } from "../nav/NavContent";
+import { MainLogo } from "../../img/svgs/MainLogo";
 
 function classNames(...classes: string[]) {
 	return classes.filter(Boolean).join(" ");
@@ -27,16 +28,12 @@ export const Header: VFC = memo(() => {
 								<div className="flex">
 									<div className="flex-shrink-0 flex items-center">
 										<Link href="/">
-											<img
-												className="block lg:h-10 h-8 w-auto img-protect__image"
-												src="https://bit.ly/3AixMqB"
-												alt="mainLogo"
-											/>
+											<MainLogo className="block lg:h-10 h-8 w-auto" />
 										</Link>
 									</div>
 									<div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-										{navigation.map((item) => (
-											<NavContent name={item.name} />
+										{navigation.map((item, index) => (
+											<NavContent key={index} name={item.name} />
 										))}
 									</div>
 								</div>
@@ -131,8 +128,8 @@ export const Header: VFC = memo(() => {
 
 						<Disclosure.Panel className="sm:hidden">
 							<div className="pt-2 pb-3 space-y-1">
-								{navigation.map((item) => (
-									<NavContent name={item.name} hamburger />
+								{navigation.map((item, index) => (
+									<NavContent key={index} name={item.name} hamburger />
 								))}
 							</div>
 							{/* 
