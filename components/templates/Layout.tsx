@@ -17,7 +17,7 @@ export const Layout: VFC<Props> = (props) => {
 			</Head>
 			<Header />
 			{/* <main className="flex-1"> */}
-			<main className="flex-1 flex justify-center items-center ">
+			<main className="flex-1 flex justify-center items-center">
 				{children}
 			</main>
 			<Footer />
