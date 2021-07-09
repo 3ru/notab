@@ -4,7 +4,7 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { microcmsClient } from "../lib/microcmsClient";
 import { GetStaticProps } from "next";
-import { ListContentsResponse, ObjectContent } from "../types/api/calendar";
+import { ListContentsResponse, CalendarEvent } from "../types/api/calendar";
 
 // TODO propsの型定義
 export default function Schedule({ events }) {
@@ -18,6 +18,7 @@ export default function Schedule({ events }) {
 				localizer={localizer}
 				showMultiDayTimes
 				onSelectEvent={(event, e) => {
+					//TODO link to dashbord
 					console.log(event.path);
 				}}
 				style={{ height: "80vh", width: "90vw" }}
@@ -28,7 +29,7 @@ export default function Schedule({ events }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-	const res: ListContentsResponse<ObjectContent> = await microcmsClient.get({
+	const res: ListContentsResponse<CalendarEvent> = await microcmsClient.get({
 		endpoint: "calendar",
 		queries: { limit: 99 },
 	});

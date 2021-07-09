@@ -5,14 +5,14 @@ export type ListContentsResponse<T> = {
 	limit: number;
 };
 
-export type ObjectContent = {
+export type CalendarEvent = {
 	id: string;
-	createdAt: string;
-	updatedAt: string;
-	publishedAt: string;
-	revisedAt: string;
+	createdAt: Date;
+	updatedAt: Date;
+	publishedAt: Date;
+	revisedAt: Date;
 	title: string;
-	start: string;
-	end: string;
+	start: Date;
+	end: Date;
 	path: string;
 };

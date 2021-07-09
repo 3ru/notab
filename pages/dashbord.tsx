@@ -1,21 +1,36 @@
 import { Layout } from "../components/templates/Layout";
 import { DashbordRow } from "../components/atoms/dashbord/DashbordRow";
+import { GetStaticProps } from "next";
+import { ListContentsResponse } from "../types/api/calendar";
+import { DashbordEvent } from "../types/api/dashbord";
+import { microcmsClient } from "../lib/microcmsClient";
 
-export default function Dashbord() {
+// TODO propsの型定義
+export default function Dashbord({ dashbords }) {
 	return (
 		<Layout title="dashbord">
 			<div className="container flex mx-auto w-full items-center justify-center">
 				<ul className="flex flex-col m-4 w-screen">
-					<DashbordRow
-						emoji="💧"
-						title="VALORANT Champions Tour 2021 Japan"
-						desc="世界大会へ向けた日本代表選考"
-						date="2021/07/30"
-					/>
-					<DashbordRow emoji="🦞" title="LCK Summer 2021 #League of Legends" />
-					<DashbordRow emoji="🥂" title="GLL Masters Spring #Apex Legends" />
+					{dashbords.map((event: DashbordEvent) => (
+						<DashbordRow
+							emoji={event.emoji}
+							title={event.title}
+							desc={event.summary}
+							date={new Date(dashbords[0].date).toLocaleDateString()}
+						/>
+					))}
 				</ul>
 			</div>
 		</Layout>
 	);
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+	const res: ListContentsResponse<DashbordEvent> = await microcmsClient.get({
+		endpoint: "dashbord",
+		queries: { limit: 99 },
+	});
+
+	const dashbords = res.contents;
+	return { props: { dashbords }, revalidate: 60 };
+};

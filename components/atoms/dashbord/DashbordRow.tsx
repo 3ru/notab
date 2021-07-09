@@ -21,8 +21,10 @@ export const DashbordRow: VFC<Props> = (props) => {
 						<span className="hover:animate-spin">{emoji}</span>
 					</div>
 					<div className="flex-1 pl-1 mr-16">
-						<div className="font-medium ">{title}</div>
-						<div className="text-gray-600 text-sm">{desc}</div>
+						<div className="text-xs sm:text-base font-medium  max-h-14 overflow-y-scroll md:overflow-visible">
+							{title}
+						</div>
+						<div className="text-gray-600 text-sm hidden sm:block">{desc}</div>
 					</div>
 					<div className="text-gray-600 text-xs">{date}</div>
 				</div>
