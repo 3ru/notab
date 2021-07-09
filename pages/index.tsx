@@ -15,7 +15,7 @@ export default function Home() {
 							<h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
 								<span className="block xl:inline ">全てを見よう、</span>
 								<p className="p-4"></p>
-								<span className="block text-indigo-600 xl:inline">
+								<span className="block bg-clip-text text-transparent bg-gradient-to-br from-blue-500 to-indigo-600 xl:inline">
 									一度に見よう
 								</span>
 							</h1>
