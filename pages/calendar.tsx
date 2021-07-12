@@ -10,6 +10,11 @@ import { ListContentsResponse, CalendarEvent } from "../types/api/calendar";
 export default function Schedule({ events }) {
 	const localizer = momentLocalizer(moment);
 
+	events.map((e: CalendarEvent) => {
+		e.start = new Date(e.start);
+		e.end = new Date(e.end);
+	});
+
 	return (
 		<Layout title="calendar">
 			<Calendar
@@ -17,9 +22,9 @@ export default function Schedule({ events }) {
 				events={events}
 				localizer={localizer}
 				showMultiDayTimes
-				onSelectEvent={(event, e) => {
+				onSelectEvent={(event: CalendarEvent, e) => {
 					//TODO link to dashbord
-					console.log(event.path);
+					console.log(event);
 				}}
 				style={{ height: "80vh", width: "90vw" }}
 				className="neumo p-8 rounded-2xl max-w-screen-2xl"
@@ -35,5 +40,5 @@ export const getStaticProps: GetStaticProps = async () => {
 	});
 
 	const events = res.contents;
-	return { props: { events }, revalidate: 60 };
+	return { props: { events }, revalidate: 1000 };
 };

@@ -32,5 +32,5 @@ export const getStaticProps: GetStaticProps = async () => {
 	});
 
 	const dashbords = res.contents;
-	return { props: { dashbords }, revalidate: 60 };
+	return { props: { dashbords }, revalidate: 1000 };
 };

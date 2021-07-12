@@ -20,7 +20,7 @@ export const DashbordRow: VFC<Props> = (props) => {
 					<div className="flex flex-col rounded-3xl w-10 h-10 bg-gray-300 justify-center items-center mr-4 neumoin">
 						<span className="hover:animate-spin">{emoji}</span>
 					</div>
-					<div className="flex-1 pl-1 mr-16">
+					<div className="flex-1 pl-1 mr-4">
 						<div className="text-xs sm:text-base font-medium  max-h-14 overflow-y-scroll md:overflow-visible">
 							{title}
 						</div>
