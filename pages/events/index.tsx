@@ -37,7 +37,7 @@ export default function Events({ users }: Props) {
 		const tag = document.createElement("script");
 		tag.src = "https://www.youtube.com/iframe_api";
 		const firstScriptTag = document.getElementsByTagName("script")[0];
-		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+		firstScriptTag!.parentNode!.insertBefore(tag, firstScriptTag);
 	}
 
 	return (
@@ -51,7 +51,7 @@ export default function Events({ users }: Props) {
 						setSelected={setSelected}
 					/>
 				</div>
-				<div className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 py-12">
+				<div className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 py-4">
 					{users.map(
 						(user: User) =>
 							// needed to avoid iframe bug

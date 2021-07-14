@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 
+declare global {
+	interface Window {
+		YT?: any;
+	}
+}
+
 type ytIframeEvent = {
 	data: number;
 	target: object;
