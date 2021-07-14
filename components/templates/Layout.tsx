@@ -19,7 +19,6 @@ export const Layout: VFC<Props> = (props) => {
 				<title>{title} | mulvid</title>
 			</Head>
 			<Header />
-			{/* <main className="flex-1"> */}
 			<main className="flex-1 flex justify-center items-center">
 				{children}
 			</main>

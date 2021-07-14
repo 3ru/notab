@@ -27,16 +27,16 @@ export default function Home() {
 								新しい生活をはじめましょう
 							</p>
 							<div className="mt-10 sm:flex sm:justify-center lg:justify-start">
-								<div className="rounded-md shadow">
+								<div className="rounded-md ">
 									<Link href="/">
-										<a className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10 duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
+										<a className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10 duration-500 ease-in-out transform hover:-translate-x hover:scale-105 active:scale-90 shadow">
 											公開中を見る
 										</a>
 									</Link>
 								</div>
-								<div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+								<div className="mt-3 rounded-md sm:mt-0 sm:ml-3">
 									<Link href="/dashbord">
-										<a className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
+										<a className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 duration-500 ease-in-out transform hover:-translate-x hover:scale-105 active:scale-90 shadow">
 											Go Dashbord
 										</a>
 									</Link>

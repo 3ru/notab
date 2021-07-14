@@ -1,21 +1,23 @@
 import { VFC } from "react";
 import Link from "next/link";
+import { memo } from "react";
 
 type Props = {
+	path: string;
 	emoji: string;
 	title: string;
 	desc?: string;
 	date?: string;
 };
 
-export const DashbordRow: VFC<Props> = (props) => {
-	const { emoji, title, desc, date } = props;
+export const DashbordRow: VFC<Props> = memo((props) => {
+	const { path, emoji, title, desc, date } = props;
 	return (
-		<Link href="/">
+		<Link href={path}>
 			<li className="border-gray-400 flex flex-row mb-6 container mx-auto px-8">
 				<div
-					className="select-none cursor-pointer rounded-2xl flex flex-1 items-center p-4 transition duration-700 delay-100 ease-in-out
-                                         transform hover:translate-y-1 hover:shadow-inner neumo"
+					className="select-none cursor-pointer rounded-2xl flex flex-1 items-center p-4 transition duration-200 ease-in-out
+                                         transform hover:opacity-80 active:translate-y-1 active:shadow-inner neumo"
 				>
 					<div className="flex flex-col rounded-3xl w-10 h-10 bg-gray-300 justify-center items-center mr-4 neumoin">
 						<span className="hover:animate-spin">{emoji}</span>
@@ -31,4 +33,4 @@ export const DashbordRow: VFC<Props> = (props) => {
 			</li>
 		</Link>
 	);
-};
+});

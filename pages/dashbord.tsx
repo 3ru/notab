@@ -1,18 +1,22 @@
 import { Layout } from "../components/templates/Layout";
 import { DashbordRow } from "../components/atoms/dashbord/DashbordRow";
 import { GetStaticProps } from "next";
-import { ListContentsResponse } from "../types/api/calendar";
+import { ListContentsResponse } from "../types/api/listContent";
 import { DashbordEvent } from "../types/api/dashbord";
-import { microcmsClient } from "../lib/microcmsClient";
+import { useMicrocmsClient } from "../lib/useMicrocmsClient";
 
-// TODO propsの型定義
-export default function Dashbord({ dashbords }) {
+type Props = {
+	dashbords: Array<DashbordEvent>;
+};
+
+export default function Dashbord({ dashbords }: Props) {
 	return (
 		<Layout title="dashbord">
 			<div className="container flex mx-auto w-full items-center justify-center">
 				<ul className="flex flex-col m-4 w-screen">
 					{dashbords.map((event: DashbordEvent) => (
 						<DashbordRow
+							path="/events"
 							emoji={event.emoji}
 							title={event.title}
 							desc={event.summary}
@@ -26,7 +30,7 @@ export default function Dashbord({ dashbords }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-	const res: ListContentsResponse<DashbordEvent> = await microcmsClient.get({
+	const res: ListContentsResponse<DashbordEvent> = await useMicrocmsClient.get({
 		endpoint: "dashbord",
 		queries: { limit: 99 },
 	});

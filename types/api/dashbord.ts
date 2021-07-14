@@ -7,5 +7,5 @@ export type DashbordEvent = {
 	title: string;
 	summary: string;
 	date: Date;
-	emoji: "🦝";
+	emoji: string;
 };
