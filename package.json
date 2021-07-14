@@ -1,5 +1,5 @@
 {
-  "name": "mulvid",
+  "name": "notab",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -24,8 +24,9 @@
     "@types/react": "17.0.11",
     "@types/react-big-calendar": "^0.31.5",
     "autoprefixer": "^10.2.6",
-    "eslint": "7.29.0",
+    "eslint": "^7.30.0",
     "eslint-config-next": "11.0.1",
+    "eslint-plugin-react": "^7.24.0",
     "postcss": "^8.3.5",
     "tailwindcss": "^2.2.4",
     "typescript": "4.3.4"
