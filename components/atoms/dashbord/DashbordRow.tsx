@@ -13,7 +13,7 @@ type Props = {
 export const DashbordRow: VFC<Props> = memo((props) => {
 	const { path, emoji, title, desc, date } = props;
 	return (
-		<Link href={path}>
+		<Link href={path} passHref>
 			<li className="border-gray-400 flex flex-row mb-6 container mx-auto px-8">
 				<div
 					className="select-none cursor-pointer rounded-2xl flex flex-1 items-center p-4 transition duration-200 ease-in-out

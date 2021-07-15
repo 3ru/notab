@@ -6,11 +6,7 @@ import { User } from "../../types/api/user";
 import { useState, useEffect, VFC } from "react";
 import { SelectMenu } from "../../components/molecules/SelectMenu";
 import { Player } from "../../components/atoms/events/Player";
-import {
-	ChevronDownIcon,
-	SearchIcon,
-	SortAscendingIcon,
-} from "@heroicons/react/solid";
+
 
 type Props = {
 	users: Array<User>;

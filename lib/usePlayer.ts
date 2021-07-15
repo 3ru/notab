@@ -42,6 +42,6 @@ export function usePlayer(id: string) {
 				},
 			});
 		}, 1000);
-	}, []);
+	}, [id]);
 	return { state, error };
 }

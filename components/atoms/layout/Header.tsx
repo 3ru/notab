@@ -22,7 +22,7 @@ export const Header: VFC = memo(() => {
 							<div className="flex justify-between h-16">
 								<div className="flex">
 									<div className="flex-shrink-0 flex items-center">
-										<Link href="/">
+										<Link href="/" passHref>
 											<MainLogo className="block lg:h-10 h-8 w-auto" />
 										</Link>
 									</div>

@@ -3,8 +3,7 @@ import { usePlayer } from "../../../lib/usePlayer";
 
 export const Player = memo(
 	({ id, name }: { id: string | undefined; name: string }) => {
-		if (!id) return <></>;
-		const { state, error } = usePlayer(id);
+		const { state, error } = usePlayer(id!);
 
 		if (!error) {
 			return (
@@ -27,5 +26,6 @@ export const Player = memo(
 		} else {
 			return <></>;
 		}
+		
 	}
 );
