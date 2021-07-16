@@ -29,10 +29,11 @@ export default function Schedule({ events }: Props) {
 				localizer={localizer}
 				showMultiDayTimes
 				onSelectEvent={(event: CalendarEvent, e) => {
-					router.push(event.path);
+					// router.push(event.path);
+					router.push("/ev")
 				}}
-				style={{ height: "80vh", width: "90vw" }}
-				className="neumo p-8 rounded-2xl max-w-screen-2xl"
+				style={{ height: "80vh", width: "95vw" }}
+				className="neumo p-3 sm:p-8 rounded-2xl max-w-screen-2xl text-xs sm:text-lg mt-4"
 			/>
 		</Layout>
 	);

@@ -6,9 +6,7 @@ import Link from "next/link";
 export default function Home() {
 	return (
 		<Layout title="Home">
-			{/* <div className="text-4xl text-center">🚚</div>... */}
-
-			<div className="relative ">
+			<div className="">
 				<main className="lg:relative">
 					<div className="mx-auto max-w-7xl pt-16 pb-20 text-center lg:py-48 lg:text-left w-full xl:w-[1400px] lg:w-[1000px]">
 						<div className="px-4 lg:w-1/2 sm:px-8 xl:pr-16 ">
@@ -44,12 +42,13 @@ export default function Home() {
 							</div>
 						</div>
 					</div>
-					<div className="relative w-full h-64 sm:h-72 md:h-96 lg:absolute inset-y-0 xl:-inset-y-28 lg:right-0 lg:w-1/2 lg:h-full">
+					<div className="relative w-full h-64 sm:h-72 md:h-96 lg:absolute inset-y-0 xl:inset-y- lg:right-0 lg:w-1/2 lg:h-full">
 						<Image
-							className="absolute inset-0 w-full h-full object-cover hover:scale-150 duration-1000 delay-500"
+							className="inset-0 w-full h-full object-cover hover:scale-150 duration-1000 delay-500"
 							src={lpImg}
 							alt="iphone landscape photography"
 							placeholder="blur"
+							height="2250"
 						/>
 					</div>
 				</main>

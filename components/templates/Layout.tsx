@@ -13,10 +13,10 @@ export const Layout: VFC<Props> = (props) => {
 	return (
 		<div
 			lang="ja-JP"
-			className="font-mono min-h-screen flex flex-col bg-gray-200"
+			className="font-mono min-h-screen flex flex-col bg-gray-200 "
 		>
 			<Head>
-				<title>{title} | mulvid</title>
+				<title>{title} | NOTAB「窓」からの開放</title>
 			</Head>
 			<Header />
 			<main className="flex-1 flex justify-center items-center">

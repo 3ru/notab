@@ -6,7 +6,8 @@ import { User } from "../../types/api/user";
 import { useState, useEffect, VFC } from "react";
 import { SelectMenu } from "../../components/molecules/SelectMenu";
 import { Player } from "../../components/atoms/events/Player";
-
+import Head from "next/head";
+import Notification from "../../components/atoms/nav/Notifications";
 
 type Props = {
 	users: Array<User>;
@@ -29,35 +30,34 @@ export default function Events({ users }: Props) {
 	// const livee = new Object();
 	// selectedUsers.map((user: User) => (livee[user.username] = true));
 
-	if (process.browser) {
-		const tag = document.createElement("script");
-		tag.src = "https://www.youtube.com/iframe_api";
-		const firstScriptTag = document.getElementsByTagName("script")[0];
-		firstScriptTag!.parentNode!.insertBefore(tag, firstScriptTag);
-	}
-
 	return (
-		<Layout title="CRカップ">
-			<div className="w-full h-full">
-				<div className="absolute top-10 lg:top-20 w-full p-8">
-					<SelectMenu
-						label="チーム選択"
-						teams={teams}
-						selected={selected}
-						setSelected={setSelected}
-					/>
+		<>
+			<Head>
+				<script async src="https://www.youtube.com/iframe_api"></script>
+			</Head>
+			<Layout title="CRカップ">
+				<Notification />
+				<div className="w-full h-full p-2">
+					<div className="max-w-4xl m-auto w-full px-8 my-12">
+						<SelectMenu
+							label="チーム選択"
+							teams={teams}
+							selected={selected}
+							setSelected={setSelected}
+						/>
+					</div>
+					<div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 h-screen">
+						{users.map(
+							(user: User) =>
+								// needed to avoid iframe bug
+								user.team.toString() === selected && (
+									<Player id={user?.youtubeID} name={user.username} />
+								)
+						)}
+					</div>
 				</div>
-				<div className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 py-4">
-					{users.map(
-						(user: User) =>
-							// needed to avoid iframe bug
-							user.team.toString() === selected && (
-								<Player id={user?.youtubeID} name={user.username} />
-							)
-					)}
-				</div>
-			</div>
-		</Layout>
+			</Layout>
+		</>
 	);
 }
 
