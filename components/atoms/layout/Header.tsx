@@ -9,7 +9,11 @@ function classNames(...classes: string[]) {
 	return classes.filter(Boolean).join(" ");
 }
 
-const navigation = [{ name: "Dashbord" }, { name: "Calendar" }];
+const navigation = [
+	{ name: "Dashbord" },
+	{ name: "Calendar" },
+	{ name: "Policy" },
+];
 
 export const Header: VFC = memo(() => {
 	return (
