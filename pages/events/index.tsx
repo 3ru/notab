@@ -7,7 +7,7 @@ import { useState, useEffect, VFC } from "react";
 import { SelectMenu } from "../../components/molecules/SelectMenu";
 import { Player } from "../../components/atoms/events/Player";
 import Head from "next/head";
-import Notification from "../../components/atoms/nav/Notifications";
+import { Notification } from "../../components/atoms/nav/Notifications";
 
 type Props = {
 	users: Array<User>;
@@ -36,7 +36,11 @@ export default function Events({ users }: Props) {
 				<script async src="https://www.youtube.com/iframe_api"></script>
 			</Head>
 			<Layout title="CRカップ">
-				<Notification />
+				<Notification
+					showingTime = {3}
+					title="お知らせ"
+					content="Youtubeアカウントを所持しているユーザーのみ表示されます。"
+				/>
 				<div className="w-full h-full p-2">
 					<div className="max-w-4xl m-auto w-full px-8 my-12">
 						<SelectMenu

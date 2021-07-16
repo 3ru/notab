@@ -30,7 +30,7 @@ export default function Schedule({ events }: Props) {
 				showMultiDayTimes
 				onSelectEvent={(event: CalendarEvent, e) => {
 					// router.push(event.path);
-					router.push("/ev");
+					router.push("/events");
 				}}
 				style={{ height: "80vh", width: "95vw" }}
 				className="neumo p-3 sm:p-8 rounded-2xl max-w-screen-2xl text-xs sm:text-sm mt-4"

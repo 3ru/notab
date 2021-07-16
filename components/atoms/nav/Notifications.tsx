@@ -1,16 +1,23 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, VFC } from "react";
 import { Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { ExclamationCircleIcon } from "@heroicons/react/solid";
 
-export default function Notification() {
+type Props = {
+	showingTime: number;
+	title: string;
+	content: string;
+};
+
+export const Notification: VFC<Props> = (props) => {
+	const { showingTime, title, content } = props;
 	const [show, setShow] = useState(true);
 
 	useEffect(() => {
 		setTimeout(() => {
 			setShow(false);
-		}, 3000);
-	}, []);
+		}, showingTime * 1000);
+	}, [showingTime]);
 
 	return (
 		<>
@@ -40,12 +47,8 @@ export default function Notification() {
 										/>
 									</div>
 									<div className="ml-3 w-0 flex-1 pt-0.5">
-										<p className="text-sm font-medium text-gray-900">
-											お知らせ
-										</p>
-										<p className="mt-1 text-sm text-gray-500">
-                                            Youtubeアカウントを所持しているユーザーのみ表示されます。
-										</p>
+										<p className="text-sm font-medium text-gray-900">{title}</p>
+										<p className="mt-1 text-sm text-gray-500">{content}</p>
 									</div>
 									<div className="ml-4 flex-shrink-0 flex">
 										<button
@@ -66,4 +69,4 @@ export default function Notification() {
 			</div>
 		</>
 	);
-}
+};

@@ -14,7 +14,7 @@ export default function Dashbord({ dashbords }: Props) {
 		<Layout title="dashbord">
 			<div className="container flex mx-auto w-full items-center justify-center">
 				<ul className="flex flex-col m-4 w-screen">
-					{dashbords.map((event: DashbordEvent, index) => (
+					{dashbords.map((event: DashbordEvent) => (
 						<DashbordRow
 							key={event.id}
 							path="/events"
