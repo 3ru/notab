@@ -1,29 +1,61 @@
-import { memo } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
+import { UserAddIcon } from "@heroicons/react/outline";
+import { useEffect, VFC, memo, Dispatch, SetStateAction } from "react";
 import { usePlayer } from "../../../lib/usePlayer";
 
-export const Player = memo(
-	({ id, name }: { id: string | undefined; name: string }) => {
-		const { state, error } = usePlayer(id!);
+type Props = {
+	id?: string;
+	name: string;
+	cnt: number;
+	setCnt: Dispatch<SetStateAction<number>>;
+	isLast: boolean;
+	liveList: Array<{ name: string; status: boolean }>;
+	setLiveList: Dispatch<SetStateAction<any>>;
+	idx: number;
+};
 
-		if (id && !error) {
-			return (
-				<div className="col-span-1 divide-y divide-gray-200 justify-center text-center">
-					<iframe
-						width="560"
-						height="315"
-						id={id}
-						// TODO 予約配信へのスマートな対応
-						// className={state === "unstarted" ? "" : "rounded-lg "}
-						className={"w-full flex items-center justify-between"}
-						frameBorder={0}
-						src={`https://www.youtube.com/embed/live_stream?channel=${id}&enablejsapi=1&mute=1`}
-					/>
+export const Player: VFC<Props> = memo((props) => {
+	const { id, name, cnt, setCnt, isLast, liveList, setLiveList, idx } = props;
+	if (!id) return <></>;
 
-					<p className="">{name}</p>
-				</div>
-			);
-		} else {
-			return <></>;
-		}
+	const { state, error } = usePlayer(id!);
+
+	useEffect(() => {
+		state === "unstarted" &&
+			setLiveList([
+				...liveList.filter((livers) => livers.name != name),
+				{ name: name, status: true },
+			]);
+		state === "playing" && setCnt(cnt + 1);
+	}, [state]);
+
+	if (id && !error) {
+		return (
+			<div
+				className={
+					isLast
+						? "col-span-2 row-span-2 md:col-start-2 divide-y divide-gray-200 justify-center text-center"
+						: cnt === 1
+						? "col-span-4 row-span-4 divide-y divide-gray-200 justify-center text-center"
+						: "col-span-2 row-span-2 divide-y divide-gray-200 justify-center text-center"
+				}
+			>
+				<iframe
+					id={id}
+					// TODO 予約配信へのスマートな対応
+					// className={state === "unstarted" ? "" : "rounded-lg "}
+					className={
+						cnt === 1
+							? "w-full h-[90vh] flex items-center justify-between"
+							: "w-full h-[50vh] flex items-center justify-between"
+					}
+					frameBorder={0}
+					src={`https://www.youtube.com/embed/live_stream?channel=${id}&enablejsapi=1&mute=1`}
+				/>
+			</div>
+		);
+	} else {
+		return <></>;
 	}
-);
+});

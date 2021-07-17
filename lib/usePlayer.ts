@@ -12,6 +12,7 @@ type ytIframeEvent = {
 };
 
 export function usePlayer(id: string) {
+	
 	const [state, setState] = useState("loading");
 	const [error, setError] = useState(false);
 

@@ -7,6 +7,8 @@ export type User = {
 	username: string;
 	twitter: string;
 	youtubeID?: string;
+	twitchID?: string;
+	mildom?: string;
 	pt: number;
 	team: Array<string>;
 	orgs: Array<string>;
