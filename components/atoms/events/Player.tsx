@@ -22,11 +22,14 @@ export const Player: VFC<Props> = memo((props) => {
 	const { state, error } = usePlayer(id!);
 
 	useEffect(() => {
-		state === "unstarted" &&
-			setLiveList([
-				...liveList.filter((livers) => livers.name != name),
-				{ name: name, status: true },
-			]);
+		state === "playing" &&
+			setLiveList(
+				liveList.map((userStatus) =>
+					userStatus.name === name
+						? { ...userStatus, status: true }
+						: userStatus
+				)
+			);
 		state === "playing" && setCnt(cnt + 1);
 	}, [state]);
 

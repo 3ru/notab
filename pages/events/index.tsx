@@ -38,6 +38,8 @@ export default function Events({ users }: Props) {
 		setCnt(0);
 	}, [selected]);
 
+	// console.log(liveList)
+
 	return (
 		<>
 			<Head>
@@ -58,7 +60,7 @@ export default function Events({ users }: Props) {
 							setSelected={setSelected}
 						/>
 					</div>
-					<p className="text-center font-bold">STREAMING:{cnt}</p>
+					{/* <p className="text-center font-bold">STREAMING:{cnt}</p> */}
 					<div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 xl:grid-cols-4 h-screen">
 						{users.map(
 							(user: User, index) =>
