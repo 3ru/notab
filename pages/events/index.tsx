@@ -21,7 +21,7 @@ export default function Events({ users }: Props) {
 			(value: string, index: number, self: Array<string>) =>
 				self.indexOf(value) === index
 		);
-	teams.unshift("全チーム (高スペックPCのみ表示可)");
+	teams.unshift("全チーム (注意: 高負荷)");
 
 	const [selected, setSelected] = useState(teams.slice(-1)[0]);
 	const [cnt, setCnt] = useState(0);
@@ -67,7 +67,7 @@ export default function Events({ users }: Props) {
 							teamLiveList={teamLiveList}
 						/>
 					</div>
-					<p className="text-center font-bold">放送中: {cnt}人</p>
+					{/* <p className="text-center font-bold">放送中: {cnt}人</p> */}
 					<div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 xl:grid-cols-4 h-screen">
 						{users.map((user: User, index) =>
 							// needed to avoid iframe bug
