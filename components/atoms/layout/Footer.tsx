@@ -1,6 +1,12 @@
 import { GitHubLogo } from "../../img/svgs/GithubLogo";
+import { Policy } from "../../img/svgs/Policy";
 
 const navigation = [
+	{
+		name: "Privacy Policy",
+		href: "/policy",
+		icon: (props: any) => <Policy {...props} />,
+	},
 	{
 		name: "GitHub",
 		href: "https://github.com/Ryuyxx/mulvid",
@@ -18,7 +24,7 @@ export const Footer = () => {
 					aria-label="Footer"
 				>
 					{navigation.map((item) => (
-						<div key={item.name} className="px-5 py-2">
+						<div key={item.name} className="px-1 py-2">
 							<a
 								key={item.name}
 								href={item.href}
@@ -27,7 +33,10 @@ export const Footer = () => {
 								rel="noopener noreferrer"
 							>
 								<span className="sr-only">{item.name}</span>
-								<item.icon className="h-6 w-6" aria-hidden="true" />
+								<item.icon
+									className="h-5 w-5 opacity-80 hover:opacity-100 hover:scale-110"
+									aria-hidden="true"
+								/>
 							</a>
 						</div>
 					))}

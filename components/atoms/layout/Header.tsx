@@ -23,7 +23,7 @@ export const Header: VFC = memo(() => {
 								<div className="flex">
 									<div className="flex-shrink-0 flex items-center">
 										<Link href="/" passHref>
-											<MainLogo className="block lg:h-10 h-8 w-auto" />
+											<MainLogo className="block lg:h-10 h-8 w-auto hover:scale-105 duration-300 active:scale-90" />
 										</Link>
 									</div>
 									<div className="hidden sm:ml-6 sm:flex sm:space-x-8">

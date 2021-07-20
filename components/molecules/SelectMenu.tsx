@@ -7,6 +7,7 @@ type Props = {
 	teams: Array<string>;
 	selected: string;
 	setSelected: any;
+	teamLiveList: Array<{ name: string; status: boolean }>;
 };
 
 function classNames(...classes: any) {
@@ -14,7 +15,7 @@ function classNames(...classes: any) {
 }
 
 export const SelectMenu: VFC<Props> = memo((props) => {
-	const { label, teams, selected, setSelected } = props;
+	const { label, teams, selected, setSelected, teamLiveList } = props;
 
 	return (
 		<Listbox value={selected} onChange={setSelected}>
@@ -61,14 +62,23 @@ export const SelectMenu: VFC<Props> = memo((props) => {
 									>
 										{({ selected, active }) => (
 											<>
-												<span
-													className={classNames(
-														selected ? "font-semibold" : "font-normal",
-														"block truncate"
-													)}
-												>
-													{team}
-												</span>
+												<div className="flex items-center">
+													<span
+														className={classNames(
+															teamLiveList[index].status ? "bg-green-400" : "bg-gray-200",
+															"flex-shrink-0 inline-block h-2 w-2 rounded-full"
+														)}
+														aria-hidden="true"
+													/>
+													<span
+														className={classNames(
+															selected ? "font-semibold" : "font-normal",
+															"ml-3 block truncate"
+														)}
+													>
+														{team}
+													</span>
+												</div>
 
 												{selected ? (
 													<span

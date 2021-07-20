@@ -21,24 +21,30 @@ export default function Events({ users }: Props) {
 			(value: string, index: number, self: Array<string>) =>
 				self.indexOf(value) === index
 		);
+	teams.unshift("全チーム (高スペックPCのみ表示可能)");
 
 	const [selected, setSelected] = useState(teams.slice(-1)[0]);
 	const [cnt, setCnt] = useState(0);
 
 	let [liveList, setLiveList] = useState<
-		Array<{ name: string; status: boolean }>
-	>([]);
+			Array<{ name: string; status: boolean }>
+		>([]),
+		[teamLiveList, setTeamLiveList] = useState<
+			Array<{ name: string; status: boolean }>
+		>([]);
+
 	useEffect(() => {
 		users.map((user: User) => {
 			liveList.push({ name: user.username, status: false });
+		});
+		teams.map((team) => {
+			teamLiveList.push({ name: team, status: false });
 		});
 	}, []);
 
 	useEffect(() => {
 		setCnt(0);
 	}, [selected]);
-
-	// console.log(liveList)
 
 	return (
 		<>
@@ -58,26 +64,35 @@ export default function Events({ users }: Props) {
 							teams={teams}
 							selected={selected}
 							setSelected={setSelected}
+							teamLiveList={teamLiveList}
 						/>
 					</div>
-					{/* <p className="text-center font-bold">STREAMING:{cnt}</p> */}
 					<div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 xl:grid-cols-4 h-screen">
 						{users.map(
 							(user: User, index) =>
 								// needed to avoid iframe bug
-								user.team.toString() === selected && (
-									<Player
-										key={user.id}
-										id={user?.youtubeID}
-										name={user.username}
-										cnt={cnt}
-										setCnt={setCnt}
-										isLast={user.username === lastUser(users, selected)}
-										liveList={liveList}
-										setLiveList={setLiveList}
-										idx={index}
-									/>
-								)
+								{
+									if (
+										selected.substr(0, 4) === "全チーム" ||
+										user.team.toString() === selected
+									) {
+										return (
+											<Player
+												key={user.id}
+												id={user?.youtubeID}
+												name={user.username}
+												team={selected}
+												cnt={cnt}
+												setCnt={setCnt}
+												isLast={user.username === lastUser(users, selected)}
+												liveList={liveList}
+												setLiveList={setLiveList}
+												teamLiveList={teamLiveList}
+												setTeamLiveList={setTeamLiveList}
+											/>
+										);
+									}
+								}
 						)}
 					</div>
 				</div>

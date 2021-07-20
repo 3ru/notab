@@ -14,6 +14,7 @@ export default function Home() {
 							<p className="p-4"></p>
 							<span className="block bg-clip-text text-transparent bg-gradient-to-br from-blue-500 to-indigo-600 xl:inline">
 								一度に見よう
+								<span className="text-xl text-pink-500"> β版</span>
 							</span>
 						</h1>
 						<p className="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
@@ -25,7 +26,7 @@ export default function Home() {
 						</p>
 						<div className="mt-10 sm:flex sm:justify-center lg:justify-start">
 							<div className="rounded-md ">
-								<Link href="/">
+								<Link href="/events">
 									<a className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10 duration-500 ease-in-out transform hover:-translate-x hover:scale-105 active:scale-90 shadow">
 										公開中を見る
 									</a>
