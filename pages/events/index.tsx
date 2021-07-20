@@ -21,7 +21,7 @@ export default function Events({ users }: Props) {
 			(value: string, index: number, self: Array<string>) =>
 				self.indexOf(value) === index
 		);
-	teams.unshift("全チーム (高スペックPCのみ表示可能)");
+	teams.unshift("全チーム (高スペックPCのみ表示可)");
 
 	const [selected, setSelected] = useState(teams.slice(-1)[0]);
 	const [cnt, setCnt] = useState(0);
@@ -67,46 +67,37 @@ export default function Events({ users }: Props) {
 							teamLiveList={teamLiveList}
 						/>
 					</div>
+					<p className="text-center font-bold">放送中: {cnt}人</p>
 					<div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 xl:grid-cols-4 h-screen">
-						{users.map(
-							(user: User, index) =>
-								// needed to avoid iframe bug
-								{
-									if (
-										selected.substr(0, 4) === "全チーム" ||
-										user.team.toString() === selected
-									) {
-										return (
-											<Player
-												key={user.id}
-												id={user?.youtubeID}
-												name={user.username}
-												team={selected}
-												cnt={cnt}
-												setCnt={setCnt}
-												isLast={user.username === lastUser(users, selected)}
-												liveList={liveList}
-												setLiveList={setLiveList}
-												teamLiveList={teamLiveList}
-												setTeamLiveList={setTeamLiveList}
-											/>
-										);
-									}
+						{users.map((user: User, index) =>
+							// needed to avoid iframe bug
+							{
+								if (
+									selected.substr(0, 4) === "全チーム" ||
+									user.team.toString() === selected
+								) {
+									return (
+										<Player
+											key={user.id}
+											id={user?.youtubeID}
+											name={user.username}
+											team={selected}
+											cnt={cnt}
+											setCnt={setCnt}
+											liveList={liveList}
+											setLiveList={setLiveList}
+											teamLiveList={teamLiveList}
+											setTeamLiveList={setTeamLiveList}
+										/>
+									);
 								}
+							}
 						)}
 					</div>
 				</div>
 			</Layout>
 		</>
 	);
-}
-
-function lastUser(users: any, selected: any) {
-	let lst: Array<string> = [];
-	users.map(
-		(user: User) => user.team.toString() === selected && lst.push(user.username)
-	);
-	return lst.slice(-1)[0];
 }
 
 export const getStaticProps: GetStaticProps = async () => {

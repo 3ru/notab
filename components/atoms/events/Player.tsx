@@ -9,7 +9,6 @@ type Props = {
 	team: string;
 	cnt: number;
 	setCnt: Dispatch<SetStateAction<number>>;
-	isLast: boolean;
 	liveList: Array<{ name: string; status: boolean }>;
 	setLiveList: Dispatch<SetStateAction<any>>;
 	teamLiveList: Array<{ name: string; status: boolean }>;
@@ -23,7 +22,6 @@ export const Player: VFC<Props> = memo((props) => {
 		team,
 		cnt,
 		setCnt,
-		isLast,
 		liveList,
 		setLiveList,
 		teamLiveList,
@@ -52,20 +50,20 @@ export const Player: VFC<Props> = memo((props) => {
 				)
 			);
 		}
-
-		state === "playing" && setCnt(cnt + 1);
 	}, [state]);
+
+	useEffect(() => {
+		state === "playing" && setCnt(cnt + 1);
+	}, [liveList]);
 
 	if (id && !error) {
 		return (
 			<div
-				className={
-					isLast
-						? "col-span-2 row-span-2 md:col-start-2 divide-y divide-gray-200 justify-center text-center"
-						: cnt === 1
-						? "col-span-4 row-span-4 divide-y divide-gray-200 justify-center text-center"
-						: "col-span-2 row-span-2 divide-y divide-gray-200 justify-center text-center"
-				}
+				className={[
+					"justify-center",
+					cnt !== 1 ? "col-span-2 row-span-2" : "col-span-4 row-span-4",
+					cnt === 3 && "md:col-start-2",
+				].join(" ")}
 			>
 				<iframe
 					id={id}
