@@ -64,7 +64,7 @@ export const Player: VFC<Props> = memo((props) => {
 				className={[
 					"justify-center",
 					cnt === 1 ? "col-span-4 row-span-4" : "col-span-2 row-span-2",
-					cnt === 3 && "md:col-start-2",
+					// cnt === 3 && "md:col-start-2",
 				].join(" ")}
 			>
 				<iframe
