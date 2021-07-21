@@ -44,7 +44,7 @@ export default function Home() {
 				</div>
 				<div className="relative w-full h-64 sm:h-72 md:h-96 lg:absolute inset-y-0 xl:inset-y-0 lg:right-0 lg:w-1/2 lg:inset-y-24 xl:w-1/2 lg:h-full">
 					<Image
-						className="inset-0 w-full h-full object-cover hover:scale-150 duration-1000 delay-500"
+						className="inset-0 w-full h-full object-cover hover:scale-150 duration-1000 delay-500 z-10"
 						src={lpImg}
 						alt="iphone landscape photography"
 						placeholder="blur"
