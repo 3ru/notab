@@ -67,7 +67,11 @@ export default function Events({ users }: Props) {
 							teamLiveList={teamLiveList}
 						/>
 					</div>
-					{/* <p className="text-center font-bold">放送中: {cnt}人</p> */}
+					
+					{cnt === 0 && (
+						<p className="text-center font-bold">現在誰も放送していません</p>
+					)}
+
 					<div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 xl:grid-cols-4 h-screen">
 						{users.map((user: User, index) =>
 							// needed to avoid iframe bug

@@ -53,21 +53,23 @@ export const Player: VFC<Props> = memo((props) => {
 	}, [state]);
 
 	useEffect(() => {
-		state === "playing" && setCnt(cnt + 1);
+		const liveCnt = liveList.filter((e) => e.status === true);
+		state === "playing" && setCnt(liveCnt.length);
 	}, [liveList]);
+
 
 	if (id && !error) {
 		return (
 			<div
 				className={[
 					"justify-center",
-					cnt !== 1 ? "col-span-2 row-span-2" : "col-span-4 row-span-4",
+					cnt === 1 ? "col-span-4 row-span-4" : "col-span-2 row-span-2",
 					cnt === 3 && "md:col-start-2",
 				].join(" ")}
 			>
 				<iframe
 					id={id}
-					loading={"lazy"}
+					loading="lazy"
 					className={[
 						"w-full flex items-center justify-between",
 						cnt === 1 ? "h-[90vh]" : "h-[50vh]",
