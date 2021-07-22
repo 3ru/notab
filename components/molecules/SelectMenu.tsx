@@ -1,13 +1,14 @@
 import { Fragment, memo, useState, VFC } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import { Teams } from "../../types/events/player";
 
 type Props = {
 	label: string;
 	teams: Array<string>;
 	selected: string;
 	setSelected: any;
-	teamLiveList: Array<{ name: string; status: boolean }>;
+	liveNow: Array<Teams>;
 };
 
 function classNames(...classes: any) {
@@ -15,7 +16,8 @@ function classNames(...classes: any) {
 }
 
 export const SelectMenu: VFC<Props> = memo((props) => {
-	const { label, teams, selected, setSelected, teamLiveList } = props;
+	const { label, teams, selected, setSelected, liveNow } = props;
+
 
 	return (
 		<Listbox value={selected} onChange={setSelected}>
@@ -47,7 +49,7 @@ export const SelectMenu: VFC<Props> = memo((props) => {
 						>
 							<Listbox.Options
 								static
-								className="absolute z-10 mt-1 w-full bg-gray-100 shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+								className="absolute z-20 mt-1 w-full bg-gray-100 shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
 							>
 								{teams.map((team, index) => (
 									<Listbox.Option
@@ -63,13 +65,15 @@ export const SelectMenu: VFC<Props> = memo((props) => {
 										{({ selected, active }) => (
 											<>
 												<div className="flex items-center">
-													<span
+													{/* <span
 														className={classNames(
-															teamLiveList[index].status ? "bg-green-400" : "bg-gray-200",
+															liveNow[0].status
+																? "bg-green-400"
+																: "bg-gray-200",
 															"flex-shrink-0 inline-block h-2 w-2 rounded-full"
 														)}
 														aria-hidden="true"
-													/>
+													/> */}
 													<span
 														className={classNames(
 															selected ? "font-semibold" : "font-normal",

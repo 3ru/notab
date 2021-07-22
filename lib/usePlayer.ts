@@ -8,13 +8,16 @@ declare global {
 
 type ytIframeEvent = {
 	data: number;
-	target: object;
+	target: {
+		getVideoData(): string;
+		getVideoUrl(): string;
+	};
 };
 
 export function usePlayer(id: string) {
-	
 	const [state, setState] = useState("loading");
 	const [error, setError] = useState(false);
+	const [info, setInfo] = useState({});
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {
@@ -22,12 +25,16 @@ export function usePlayer(id: string) {
 			clearInterval(intervalId);
 			const player = new window.YT.Player(id, {
 				events: {
-					onReady() {
+					onReady(event: ytIframeEvent) {
+						setInfo(event.target.getVideoData());
 						setState("ready");
-						player.playVideo();
+						event.target.getVideoUrl().includes("live_stream")
+							? player.stopVideo() && setError(true)
+							: player.playVideo();
 					},
 					onError() {
 						setError(true);
+						player.stopVideo();
 					},
 					onStateChange(event: ytIframeEvent) {
 						[
@@ -44,5 +51,5 @@ export function usePlayer(id: string) {
 			});
 		}, 1000);
 	}, [id]);
-	return { state, error };
+	return { info, state, error };
 }

@@ -21,30 +21,39 @@ export default function Events({ users }: Props) {
 			(value: string, index: number, self: Array<string>) =>
 				self.indexOf(value) === index
 		);
-	teams.unshift("全チーム (注意: 高負荷)");
+	teams.unshift("全チーム表示 (αテスト/バグ有)");
 
 	const [selected, setSelected] = useState(teams.slice(-1)[0]);
-	const [cnt, setCnt] = useState(0);
 
-	let [liveList, setLiveList] = useState<
-			Array<{ name: string; status: boolean }>
-		>([]),
-		[teamLiveList, setTeamLiveList] = useState<
-			Array<{ name: string; status: boolean }>
-		>([]);
+	let [liveNow, setLiveNow] = useState<
+		Array<{
+			teamname: string;
+			status: boolean;
+			members: Object;
+		}>
+	>([]);
 
 	useEffect(() => {
-		users.map((user: User) => {
-			liveList.push({ name: user.username, status: false });
-		});
 		teams.map((team) => {
-			teamLiveList.push({ name: team, status: false });
+			const member: any = {};
+
+			users
+				.filter(
+					(value: User, index: number, self: Array<User>) =>
+						value.team.toString() === team
+				)
+				.map((e) => (member[e.username] = false));
+
+			liveNow.push({
+				teamname: team,
+				status: false,
+				members: member,
+			});
 		});
 	}, []);
 
-	useEffect(() => {
-		setCnt(0);
-	}, [selected]);
+
+	
 
 	return (
 		<>
@@ -64,13 +73,11 @@ export default function Events({ users }: Props) {
 							teams={teams}
 							selected={selected}
 							setSelected={setSelected}
-							teamLiveList={teamLiveList}
+							liveNow={liveNow}
 						/>
 					</div>
-					
-					{cnt === 0 && (
-						<p className="text-center font-bold">現在誰も放送していません</p>
-					)}
+
+					{/* <p className="text-center font-bold"></p> */}
 
 					<div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 xl:grid-cols-4 h-screen">
 						{users.map((user: User, index) =>
@@ -86,12 +93,8 @@ export default function Events({ users }: Props) {
 											id={user?.youtubeID}
 											name={user.username}
 											team={selected}
-											cnt={cnt}
-											setCnt={setCnt}
-											liveList={liveList}
-											setLiveList={setLiveList}
-											teamLiveList={teamLiveList}
-											setTeamLiveList={setTeamLiveList}
+											liveNow={liveNow}
+											setLiveNow={setLiveNow}
 										/>
 									);
 								}
