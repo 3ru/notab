@@ -29,7 +29,7 @@ export const Footer = () => {
 								key={item.name}
 								href={item.href}
 								className="text-gray-400 hover:text-gray-500"
-								target="_blank"
+								// target="_blank"
 								rel="noopener noreferrer"
 							>
 								<span className="sr-only">{item.name}</span>

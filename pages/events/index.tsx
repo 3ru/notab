@@ -39,8 +39,6 @@ export default function Events({ users }: Props) {
 				)
 				.map((e) => (member[e.username] = false));
 
-			console.log(member);
-
 			liveStatuses[team] = {
 				status: false,
 				members: member,

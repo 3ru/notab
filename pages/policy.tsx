@@ -7,6 +7,7 @@ import {
 	ViewListIcon,
 } from "@heroicons/react/outline";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const links = [
 	{
@@ -21,7 +22,8 @@ const links = [
 			"当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を使用しています。\
 			このGoogleアナリティクスはデータの収集のためにCookieを使用しています。このデータは匿名で収集されており、個人を特定するものではありません。\
 			この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。\
-			この規約に関しての詳細はGoogleアナリティクスサービス利用規約のページやGoogleポリシーと規約ページをご覧ください。",
+			この規約に関しての詳細はGoogleアナリティクスサービス利用規約のページやGoogleポリシーと規約ページをご覧ください。\
+			また、Youtubeの埋め込み動画の利用もしております。これらの利用も同時に規約に遵守するもとし、詳細は以下よりご確認ください。",
 		icon: ViewListIcon,
 	},
 	{
@@ -40,7 +42,23 @@ const links = [
 	},
 ];
 
+const terms = [
+	{
+		title: "Googleアナリティクスサービス利用規約",
+		ref: "https://marketingplatform.google.com/about/analytics/terms/jp/",
+	},
+	{
+		title: "Googleポリシーと規約",
+		ref: "https://policies.google.com/technologies/ads?hl=ja",
+	},
+	{
+		title: "YouTube の利用規約",
+		ref: "https://www.youtube.com/t/terms",
+	},
+];
+
 export default function Policy() {
+	const router = useRouter();
 	return (
 		<Layout title="プライバシーポリシー">
 			<div className="font-sans">
@@ -54,9 +72,9 @@ export default function Policy() {
 								role="list"
 								className="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200"
 							>
-								{links.map((link, linkIdx) => (
+								{links.map((link, index) => (
 									<li
-										key={linkIdx}
+										key={index}
 										className="relative py-5 flex items-start space-x-4"
 									>
 										<div className="flex-shrink-0">
@@ -77,13 +95,30 @@ export default function Policy() {
 													{link.title}
 												</span>
 											</h3>
-											<p className="text-sm text-gray-500">
+											<div className="text-sm text-gray-500">
 												{link.description}
-											</p>
+											</div>
 										</div>
 									</li>
 								))}
 							</ul>
+							<div>
+								{terms.map((term, index) => (
+									<p
+										key={index}
+										className="text-xs font-medium text-indigo-800 hover:opacity-50"
+									>
+										<a
+											href={term.ref}
+											target="_blank"
+											className="cursor-pointer"
+											rel="noreferrer noopener"
+										>
+											{term.title}
+										</a>
+									</p>
+								))}
+							</div>
 							<div className="mt-6 animate-pulse">
 								<Link href="/" passHref>
 									<span className="text-base font-medium text-indigo-600 hover:text-indigo-500 cursor-pointer">
