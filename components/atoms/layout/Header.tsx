@@ -4,10 +4,7 @@ import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { NavContent } from "../nav/NavContent";
 import { MainLogo } from "../../img/svgs/MainLogo";
-
-function classNames(...classes: string[]) {
-	return classes.filter(Boolean).join(" ");
-}
+import { classNames } from "../../../lib/tailwindClassNames";
 
 const navigation = [{ name: "Dashbord" }, { name: "Calendar" }];
 

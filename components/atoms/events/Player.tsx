@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, VFC, memo, Dispatch, SetStateAction } from "react";
+import { classNames } from "../../../lib/tailwindClassNames";
 import { usePlayer } from "../../../lib/usePlayer";
 import { Teams } from "../../../types/events/player";
 
@@ -37,7 +38,6 @@ export const Player: VFC<Props> = memo((props) => {
 		}
 	}, [state]);
 
-
 	let cnt = 0;
 	liveNow.map((teams) => {
 		if (teams.teamname === team) {
@@ -53,19 +53,19 @@ export const Player: VFC<Props> = memo((props) => {
 	if (id && !error) {
 		return (
 			<div
-				className={[
+				className={classNames(
 					"justify-center z-10",
-					cnt === 1 ? "col-span-4 row-span-4" : "col-span-2 row-span-2",
+					cnt === 1 ? "col-span-4 row-span-4" : "col-span-2 row-span-2"
 					// cnt === 3 && "md:col-start-2",
-				].join(" ")}
+				)}
 			>
 				<iframe
 					id={id}
-					className={[
+					className={classNames(
 						"w-full flex items-center justify-between",
 						cnt === 1 ? "h-[90vh]" : "h-[50vh]",
-						state === "unstarted" ? "hidden" : "",
-					].join(" ")}
+						state === "unstarted" ? "hidden" : ""
+					)}
 					frameBorder={0}
 					src={`https://www.youtube.com/embed/live_stream?channel=${id}&enablejsapi=1&mute=1`}
 				/>

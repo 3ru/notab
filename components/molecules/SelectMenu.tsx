@@ -2,6 +2,7 @@ import { Fragment, memo, useState, VFC } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import { Teams } from "../../types/events/player";
+import { classNames } from "../../lib/tailwindClassNames";
 
 type Props = {
 	label: string;
@@ -10,10 +11,6 @@ type Props = {
 	setSelected: any;
 	liveNow: Array<Teams>;
 };
-
-function classNames(...classes: any) {
-	return classes.filter(Boolean).join(" ");
-}
 
 export const SelectMenu: VFC<Props> = memo((props) => {
 	const { label, teams, selected, setSelected, liveNow } = props;
