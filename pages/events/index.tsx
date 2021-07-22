@@ -4,11 +4,12 @@ import { Layout } from "../../components/templates/Layout";
 import { useMicrocmsClient } from "../../lib/useMicrocmsClient";
 import { ListContentsResponse } from "../../types/api/listContent";
 import { User } from "../../types/api/user";
-import { useState, useEffect, VFC, memo } from "react";
+import { useState, useEffect } from "react";
 import { SelectMenu } from "../../components/molecules/SelectMenu";
 import { Player } from "../../components/atoms/events/Player";
 import Head from "next/head";
 import { Notification } from "../../components/atoms/nav/Notifications";
+import { LiveStatuses, MemberStatus } from "../../types/events/player";
 
 type Props = {
 	users: Array<User>;
@@ -23,19 +24,13 @@ export default function Events({ users }: Props) {
 		);
 	teams.unshift("全チーム表示 (αテスト/バグ有)");
 
-	const [selected, setSelected] = useState(teams.slice(-1)[0]);
+	const [select, setSelect] = useState(teams.slice(-1)[0]);
 
-	let [liveNow, setLiveNow] = useState<
-		Array<{
-			teamname: string;
-			status: boolean;
-			members: Object;
-		}>
-	>([]);
+	let [liveStatuses, setLiveStatuses] = useState<LiveStatuses>({});
 
 	useEffect(() => {
 		teams.map((team) => {
-			const member: any = {};
+			const member: MemberStatus = {};
 
 			users
 				.filter(
@@ -44,16 +39,14 @@ export default function Events({ users }: Props) {
 				)
 				.map((e) => (member[e.username] = false));
 
-			liveNow.push({
-				teamname: team,
+			console.log(member);
+
+			liveStatuses[team] = {
 				status: false,
 				members: member,
-			});
+			};
 		});
 	}, []);
-
-
-	
 
 	return (
 		<>
@@ -71,9 +64,9 @@ export default function Events({ users }: Props) {
 						<SelectMenu
 							label="チーム選択"
 							teams={teams}
-							selected={selected}
-							setSelected={setSelected}
-							liveNow={liveNow}
+							select={select}
+							setSelect={setSelect}
+							liveStatuses={liveStatuses}
 						/>
 					</div>
 
@@ -81,20 +74,20 @@ export default function Events({ users }: Props) {
 
 					<div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 xl:grid-cols-4 h-screen">
 						{users.map((user: User, index) =>
-							// needed to avoid iframe bug
+							// needed for avoid iframe bug
 							{
 								if (
-									selected.substr(0, 4) === "全チーム" ||
-									user.team.toString() === selected
+									select.substr(0, 4) === "全チーム" ||
+									user.team.toString() === select
 								) {
 									return (
 										<Player
 											key={user.id}
 											id={user?.youtubeID}
 											name={user.username}
-											team={selected}
-											liveNow={liveNow}
-											setLiveNow={setLiveNow}
+											team={select}
+											liveStatuses={liveStatuses}
+											setLiveStatuses={setLiveStatuses}
 										/>
 									);
 								}

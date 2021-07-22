@@ -1,5 +1,8 @@
-export type Teams = {
-	teamname: string;
-	status: boolean;
-	members: any;
+export type MemberStatus = { [s: string]: boolean };
+
+export type LiveStatuses = {
+	[s: string]: {
+		status: boolean;
+		members: MemberStatus;
+	};
 };

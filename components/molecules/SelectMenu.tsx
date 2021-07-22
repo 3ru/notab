@@ -1,23 +1,22 @@
-import { Fragment, memo, useState, VFC } from "react";
+import { Dispatch, Fragment, memo, SetStateAction, useState, VFC } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-import { Teams } from "../../types/events/player";
+import { LiveStatuses } from "../../types/events/player";
 import { classNames } from "../../lib/tailwindClassNames";
 
 type Props = {
 	label: string;
 	teams: Array<string>;
-	selected: string;
-	setSelected: any;
-	liveNow: Array<Teams>;
+	select: string;
+	setSelect: Dispatch<SetStateAction<string>>;
+	liveStatuses: LiveStatuses;
 };
 
 export const SelectMenu: VFC<Props> = memo((props) => {
-	const { label, teams, selected, setSelected, liveNow } = props;
-
+	const { label, teams, select, setSelect, liveStatuses } = props;
 
 	return (
-		<Listbox value={selected} onChange={setSelected}>
+		<Listbox value={select} onChange={setSelect}>
 			{({ open }) => (
 				<>
 					<Listbox.Label className="block text-sm font-medium text-gray-700">
@@ -25,7 +24,7 @@ export const SelectMenu: VFC<Props> = memo((props) => {
 					</Listbox.Label>
 					<div className="mt-1 relative">
 						<Listbox.Button className="neumo bg-white relative w-full border rounded-md shadow-sm pl-3 pr-16 py-2 text-left cursor-default focus:outline-none  focus:border-none sm:text-sm">
-							<span className="block truncate">{selected}</span>
+							<span className="block truncate">{select}</span>
 							<span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
 								<SelectorIcon
 									className="h-5 w-5 text-gray-400"
@@ -64,7 +63,7 @@ export const SelectMenu: VFC<Props> = memo((props) => {
 												<div className="flex items-center">
 													{/* <span
 														className={classNames(
-															liveNow[0].status
+															liveStatuses[select].status
 																? "bg-green-400"
 																: "bg-gray-200",
 															"flex-shrink-0 inline-block h-2 w-2 rounded-full"
