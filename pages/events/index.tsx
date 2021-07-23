@@ -10,6 +10,7 @@ import { Player } from "../../components/atoms/events/Player";
 import Head from "next/head";
 import { Notification } from "../../components/atoms/nav/Notifications";
 import { LiveStatuses, MemberStatus } from "../../types/events/player";
+import { Tables } from "../../components/atoms/events/Tables";
 
 type Props = {
 	users: Array<User>;
@@ -24,7 +25,7 @@ export default function Events({ users }: Props) {
 		);
 	teams.unshift("全チーム表示 (αテスト/バグ有)");
 
-	const [select, setSelect] = useState(teams.slice(-1)[0]);
+	const [select, setSelect] = useState<string>(teams.slice(-1)[0]);
 
 	let [liveStatuses, setLiveStatuses] = useState<LiveStatuses>({});
 
@@ -46,6 +47,8 @@ export default function Events({ users }: Props) {
 		});
 	}, []);
 
+	const selectTeam = users.filter((user) => user.team.toString() === select);
+
 	return (
 		<>
 			<Head>
@@ -66,9 +69,8 @@ export default function Events({ users }: Props) {
 							setSelect={setSelect}
 							liveStatuses={liveStatuses}
 						/>
+						{select.substr(0, 4) !== "全チーム" && <Tables users={selectTeam} liveStatus={liveStatuses} select={select}/>}
 					</div>
-
-					{/* <p className="text-center font-bold"></p> */}
 
 					<div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 xl:grid-cols-4 h-screen">
 						{users.map((user: User, index) =>

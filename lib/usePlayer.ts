@@ -29,7 +29,7 @@ export function usePlayer(id: string) {
 						setInfo(event.target.getVideoData());
 						setState("ready");
 						event.target.getVideoUrl().includes("live_stream")
-							? player.stopVideo() && setError(true)
+							? player.stopVideo() && player.clearVideo() && setError(true)
 							: player.playVideo();
 					},
 					onError() {
