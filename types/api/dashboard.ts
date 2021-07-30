@@ -1,4 +1,4 @@
-export type DashbordEvent = {
+export type DashboardEvent = {
 	id: string;
 	createdAt: Date;
 	updatedAt: Date;

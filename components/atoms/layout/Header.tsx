@@ -6,7 +6,7 @@ import { NavContent } from "../nav/NavContent";
 import { MainLogo } from "../../img/svgs/MainLogo";
 import { classNames } from "../../../lib/tailwindClassNames";
 
-const navigation = [{ name: "Dashbord" }, { name: "Calendar" }];
+const navigation = [{ name: "Dashboard" }, { name: "Calendar" }];
 
 export const Header: VFC = memo(() => {
 	return (

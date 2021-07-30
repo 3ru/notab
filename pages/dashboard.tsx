@@ -1,27 +1,27 @@
 import { Layout } from "../components/templates/Layout";
-import { DashbordRow } from "../components/atoms/dashbord/DashbordRow";
+import { DashboardRow } from "../components/atoms/dashboard/DashboardRow";
 import { GetStaticProps } from "next";
 import { ListContentsResponse } from "../types/api/listContent";
-import { DashbordEvent } from "../types/api/dashbord";
+import { DashboardEvent } from "../types/api/dashboard";
 import { useMicrocmsClient } from "../lib/useMicrocmsClient";
 
 type Props = {
-	dashbords: Array<DashbordEvent>;
+	dashboards: Array<DashboardEvent>;
 };
 
-export default function Dashbord({ dashbords }: Props) {
+export default function Dashboard({ dashboards }: Props) {
 	return (
-		<Layout title="dashbord">
+		<Layout title="dashboard">
 			<div className="container flex mx-auto w-full items-center justify-center">
 				<ul className="flex flex-col m-4 w-screen">
-					{dashbords.map((event: DashbordEvent) => (
-						<DashbordRow
+					{dashboards.map((event: DashboardEvent) => (
+						<DashboardRow
 							key={event.id}
 							path="/events"
 							emoji={event.emoji}
 							title={event.title}
 							desc={event.summary}
-							date={new Date(dashbords[0].date).toLocaleDateString()}
+							date={new Date(dashboards[0].date).toLocaleDateString()}
 						/>
 					))}
 				</ul>
@@ -31,11 +31,11 @@ export default function Dashbord({ dashbords }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-	const res: ListContentsResponse<DashbordEvent> = await useMicrocmsClient.get({
-		endpoint: "dashbord",
+	const res: ListContentsResponse<DashboardEvent> = await useMicrocmsClient.get({
+		endpoint: "dashboard",
 		queries: { limit: 99 },
 	});
 
-	const dashbords = res.contents;
-	return { props: { dashbords }, revalidate: 1000 };
+	const dashboards = res.contents;
+	return { props: { dashboards }, revalidate: 1000 };
 };

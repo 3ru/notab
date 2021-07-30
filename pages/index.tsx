@@ -33,9 +33,9 @@ export default function Home() {
 								</Link>
 							</div>
 							<div className="mt-3 rounded-md sm:mt-0 sm:ml-3">
-								<Link href="/dashbord">
+								<Link href="/dashboard">
 									<a className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 duration-500 ease-in-out transform hover:-translate-x hover:scale-105 active:scale-90 shadow">
-										Go Dashbord
+										Go Dashboard
 									</a>
 								</Link>
 							</div>

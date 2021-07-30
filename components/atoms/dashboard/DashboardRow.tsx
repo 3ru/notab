@@ -10,7 +10,7 @@ type Props = {
 	date?: string;
 };
 
-export const DashbordRow: VFC<Props> = memo((props) => {
+export const DashboardRow: VFC<Props> = memo((props) => {
 	const { path, emoji, title, desc, date } = props;
 	return (
 		<Link href={path} passHref>
